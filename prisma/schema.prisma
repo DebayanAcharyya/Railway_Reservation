@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+model User {
+  id       Int       @id @default(autoincrement())
+  name     String
+  email    String    @unique
+  password String
+  role     String    @default("user") // "admin" or "user"
+  
+  bookings Booking[] // Inverse relation: A user can have multiple bookings
+}
+
+model Train {
+  id            Int       @id @default(autoincrement())
+  name          String
+  source        String
+  destination   String
+  totalSeats    Int
+  availableSeats Int
+  
+  bookings      Booking[] // Inverse relation: A train can have multiple bookings
+}
+
+model Booking {
+  id      Int  @id @default(autoincrement())
+  userId  Int
+  trainId Int
+  seatNo  Int
+  User    User  @relation(fields: [userId], references: [id])
+  Train   Train @relation(fields: [trainId], references: [id])
+}
