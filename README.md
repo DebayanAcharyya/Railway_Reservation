@@ -87,9 +87,27 @@ POST /api/auth/register
   "name": "John Doe",
   "email": "johndoe@example.com",
   "password": "securepassword123",
-  "role" : "(user / admin)"
+  "role": "user"
 }
 ```
+
+**Register an Admin**
+
+```bash
+POST /api/auth/register
+x-api-key: <admin_api_key>
+```
+
+**Request Body:**
+```json
+{
+  "name": "Admin User",
+  "email": "admin@example.com",
+  "password": "securepassword123",
+  "role": "admin"
+}
+```
+
 
 **Login**
 
