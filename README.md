@@ -11,7 +11,7 @@ A **real-time railway booking system** that allows users to:
 
 The system **prevents double bookings** by ensuring only one user can book a seat when multiple users try **simultaneously**.
 
-Admin API endpoints are protecetd with an **API key** that will be known only to the admin so that no one can add false data to the system.
+Admin API endpoints are protected with an **API key** that will be known only to the admin so that no one can add false data to the system.
 
 
 ---
