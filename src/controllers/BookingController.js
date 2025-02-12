@@ -39,6 +39,17 @@ class BookingController {
             res.status(400).json({ error: error.message });
         }
     }
+
+    async getBookingById (req, res) {
+        try {
+            const { bookingId } = req.params;
+            const booking = await BookingService.getBookingById(parseInt(bookingId));
+
+            res.status(200).json({ booking });
+        } catch (error) {
+            res.status(400).json({ error: error.message });
+        }
+    };
 }
 
 module.exports = new BookingController();

@@ -9,6 +9,7 @@ describe("Bookings API Tests", () => {
   let token = "";
   let userId;
   let trainId;
+  let bookingId;
 
   beforeAll(async () => {
     // Clean test database
@@ -120,4 +121,6 @@ describe("Bookings API Tests", () => {
     expect(res.statusCode).toBe(400);
     expect(res.body.error).toBe("Train not found");
   });
+
+ 
 });

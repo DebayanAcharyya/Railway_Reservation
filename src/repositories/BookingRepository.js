@@ -38,6 +38,16 @@ class BookingRepository {
             });
         });
     }
+
+    async getBookingById(bookingId) {
+        return await prisma.booking.findUnique({
+            where: { id: bookingId },
+            include: {
+                User: { select: { name: true, email: true } }, // Include user details
+                Train: { select: { name: true, source: true, destination: true } } // Include train details
+            }
+        });
+    }
 }
 
 module.exports = new BookingRepository();
