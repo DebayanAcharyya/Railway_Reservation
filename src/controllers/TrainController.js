@@ -43,7 +43,7 @@ class TrainController {
 
             const trains = await TrainService.getTrainsByRoute(source, destination);
             
-            res.status(200).json(trains);
+            res.status(200).json({trains});
         } catch (error) {
             res.status(500).json({ error: error.message });
         }

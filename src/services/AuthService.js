@@ -4,12 +4,14 @@ const UserRepository = require('../repositories/UserRepository');
 require('dotenv').config();
 
 class AuthService {
-    async register(name, email, password) {
+    async register(name, email, password, role = "user") {
         const existingUser = await UserRepository.findByEmail(email);
         if (existingUser) throw new Error("User already exists");
-
+        if (!["user", "admin"].includes(role)) {
+            throw new Error("Invalid role. Allowed roles: user, admin");
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
-        return await UserRepository.createUser({ name, email, password: hashedPassword });
+        return await UserRepository.createUser({ name, email, password: hashedPassword, role });
     }
 
     async login(email, password) {

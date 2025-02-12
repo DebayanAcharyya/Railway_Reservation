@@ -23,7 +23,19 @@ class TrainService {
 
    
     async getTrainsByRoute(source, destination) {
-        return await TrainRepository.getTrainsByRoute(source.trim(), destination.trim());
+        const trains =  await TrainRepository.getTrainsByRoute(source.trim(), destination.trim());
+
+        return trains.map((train) => {
+            const bookedSeats = train.bookings.length;
+            return {
+                id: train.id,
+                name: train.name,
+                source: train.source,
+                destination: train.destination,
+                totalSeats: train.totalSeats,
+                availableSeats: train.totalSeats - bookedSeats
+            };
+        });
     }
 
 }

@@ -18,6 +18,9 @@ class TrainRepository {
             where: {
                 source: source,
                 destination: destination
+            },
+            include: {
+                bookings: true
             }
         });
     }

@@ -16,7 +16,9 @@ describe("Train Management API Tests", () => {
         await prisma.user.deleteMany();
 
         // Register an admin user
-        const adminRes = await request(server).post("/api/auth/register").send({
+        const adminRes = await request(server).post("/api/auth/register")
+        .set("x-api-key", process.env.ADMIN_API_KEY)
+        .send({
             name: "Admin User",
             email: "admin@irctc.com",
             password: "adminpassword",
@@ -76,7 +78,8 @@ describe("Train Management API Tests", () => {
             .get("/api/trains/search?source=Mumbai&destination=Delhi");
 
         expect(res.statusCode).toBe(200);
-        expect(Array.isArray(res.body)).toBeTruthy();
-        expect(res.body.length).toBeGreaterThan(0);
+        expect(res.body).toHaveProperty("trains");
+    expect(Array.isArray(res.body.trains)).toBeTruthy();
+    expect(res.body.trains.length).toBeGreaterThan(0);
     });
 });
