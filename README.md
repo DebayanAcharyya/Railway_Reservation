@@ -184,7 +184,7 @@ This system ensures **only one user** can book a seat when multiple users try si
 ## ✅ Running Tests
 
 ### 🧪 1. Run Unit Tests
-Tests are included for authentication, train operations, booking seats and concurrency testing.
+Tests are included for **authentication**, **train operations**, **booking seats** and **concurrency testing**.
 ```bash
 npm test
 ```
