@@ -4,10 +4,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = express.Router();
 
-router.post('/create', authMiddleware, BookingController.bookSeat);
-router.get('/:trainId/seats', BookingController.getAvailableSeats);
-
-
-
+router.post('/book', authMiddleware, BookingController.bookSeat);
+router.get('/available-seats/:trainId', BookingController.getAvailableSeats);
 
 module.exports = router;

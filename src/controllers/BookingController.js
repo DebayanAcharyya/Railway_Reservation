@@ -4,11 +4,14 @@ class BookingController {
     
     async getAvailableSeats(req, res) {
         try {
-            const trainId = Number(req.params.trainId);
-            if (isNaN(trainId)) return res.status(400).json({ error: "Invalid train ID" });
+            const { trainId } = req.params;
+            const availableSeats = await BookingService.getAvailableSeats(parseInt(trainId));
+            
+            if (availableSeats === null) {
+                return res.status(404).json({ error: "Train not found" });
+            }
 
-            const availableSeats = await BookingService.getAvailableSeats(trainId);
-            res.status(200).json({ availableSeats });
+            res.status(200).json({ trainId, availableSeats });
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -18,7 +21,13 @@ class BookingController {
     async bookSeat(req, res) {
         try {
             const { trainId } = req.body;
-            const userId = req.user.id;
+            //const userId = req.user.id;
+            console.log("Decoded User:", req.user);
+            const userId = req.user?.userId;  // Ensure userId is extracted from JWT
+
+            if (!userId) {
+                return res.status(401).json({ error: "Unauthorized: User ID missing" });
+            }
 
             if (!trainId) {
                 return res.status(400).json({ error: "Train ID is required" });
