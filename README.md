@@ -66,7 +66,7 @@ npx prisma migrate dev --name init
 
 ### 5️⃣ Start the Server
 ```bash
-npm start
+npm run dev
 ```
 
 ---
