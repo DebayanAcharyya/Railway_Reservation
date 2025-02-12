@@ -1,4 +1,4 @@
-#  Railway Management System
+#  Railway Reservation System
 
 A **real-time railway booking system** that allows users to:
 -  Authenticate via JWT-based login   
