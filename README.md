@@ -40,8 +40,8 @@ Admin API endpoints are protected with an **API key** that will be known only to
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-repo/railway-booking-system.git
-cd railway-booking-system
+git clone https://github.com/DebayanAcharyya/Railway_Reservation.git
+cd Railway_Reservation
 ```
 
 ### 2️⃣ Install Dependencies
@@ -175,7 +175,7 @@ Authorization: Bearer <token>
 
 ## ⚙️ Concurrency Handling
 This system ensures **only one user** can book a seat when multiple users try simultaneously by:
--  Using **Prisma transactions** to maintain consistency.
+- Using **Prisma transactions** to maintain consistency.
 - Locking rows with `SELECT ... FOR UPDATE` to prevent double booking.
 
 
@@ -184,7 +184,7 @@ This system ensures **only one user** can book a seat when multiple users try si
 ## ✅ Running Tests
 
 ### 🧪 1. Run Unit Tests
-Tests are included for authentication, train operations, booking seats and concurrency testing
+Tests are included for authentication, train operations, booking seats and concurrency testing.
 ```bash
 npm test
 ```
