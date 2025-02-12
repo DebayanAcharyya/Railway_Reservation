@@ -6,8 +6,7 @@ class TrainService {
             name,
             source,
             destination,
-            totalSeats,
-            availableSeats: totalSeats
+            totalSeats
         });
         return newTrain;
     }
@@ -22,9 +21,11 @@ class TrainService {
         return train;
     }
 
+   
     async getTrainsByRoute(source, destination) {
-        return await TrainRepository.getTrainsByRoute(source, destination);
+        return await TrainRepository.getTrainsByRoute(source.trim(), destination.trim());
     }
+
 }
 
 module.exports = new TrainService();
