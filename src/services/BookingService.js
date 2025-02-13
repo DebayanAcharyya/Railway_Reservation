@@ -8,8 +8,8 @@ class BookingService {
     async bookSeat(userId, trainId) {
         return await BookingRepository.bookSeat(userId, trainId);
     }
-    async getBookingById(bookingId) {
-        const booking = await BookingRepository.getBookingById(bookingId);
+    async getBookingById(bookingId, userId) {
+        const booking = await BookingRepository.getBookingById(bookingId, userId);
         if (!booking) throw new Error("Booking not found");
         return booking;
     }

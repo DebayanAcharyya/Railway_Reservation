@@ -1,4 +1,4 @@
-# 🚆 Railway Reservation System
+#  Railway Reservation System
 
 A **real-time railway booking system** that allows users to:
 -  Authenticate via JWT-based login   
@@ -16,7 +16,7 @@ Admin API endpoints are protected with an **API key** that will be known only to
 
 ---
 
-## 🛠️ Features
+##  Features
 
 -  **Train Search** - Find trains between stations  
 -  **Seat Availability** - Check available seats in real-time  

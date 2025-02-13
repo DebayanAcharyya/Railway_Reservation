@@ -43,7 +43,8 @@ class BookingController {
     async getBookingById (req, res) {
         try {
             const { bookingId } = req.params;
-            const booking = await BookingService.getBookingById(parseInt(bookingId));
+            const userId = req.user?.userId;
+            const booking = await BookingService.getBookingById(parseInt(bookingId), userId);
 
             res.status(200).json({ booking });
         } catch (error) {

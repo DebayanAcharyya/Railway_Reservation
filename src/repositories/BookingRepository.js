@@ -88,14 +88,17 @@ class BookingRepository {
         }
     
 
-    async getBookingById(bookingId) {
-        return await prisma.booking.findUnique({
-            where: { id: bookingId },
+    async getBookingById(bookingId, userId) {
+        const booking =  prisma.booking.findUnique({
+            where: { id: bookingId, userId : userId },
             include: {
                 User: { select: { name: true, email: true } }, // Include user details
                 Train: { select: { name: true, source: true, destination: true } } // Include train details
             }
         });
+
+        if(!booking) throw new Error("Booking not found");
+        return booking;
     }
 }
 

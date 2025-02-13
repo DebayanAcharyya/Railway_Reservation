@@ -88,6 +88,7 @@ describe("Bookings API Tests", () => {
 
     expect(res.statusCode).toBe(201);
     expect(res.body.booking).toHaveProperty("seatNo");
+    bookingId = res.body.booking.id;
   });
 
   test("Prevent overbooking when full", async () => {
@@ -121,6 +122,19 @@ describe("Bookings API Tests", () => {
     expect(res.statusCode).toBe(400);
     expect(res.body.error).toBe("Train not found");
   });
+
+  test("Get specific booking details", async () => {
+    const res = await request(server)
+    .get(`/api/bookings/${bookingId}`)
+    .set("Authorization", `Bearer ${token}`);
+    console.log(res.body);
+    expect(res.statusCode).toBe(200);
+
+
+
+  });
+
+  
 
  
 });
